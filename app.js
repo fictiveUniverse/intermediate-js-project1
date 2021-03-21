@@ -14,20 +14,6 @@ function jurassic_park (species, weight, height, diet, where, when, fact){
     this.image= "images/" + species.toLowerCase() + ".png";
 }
 
-//Get dino data from json file
-function fetchDinoData(){
-    let dino_list = [];
-    fetch('dino.json')
-    .then(response => response.json())
-    .then(json_data => {
-        // Do something with your data
-        dinos_list = json_data.Dinos.map(currDino => jurassic_park(currDino.species, currDino.weight, currDino.height, currDino.diet, currDino.where, currDino.when, currDino.fact));
-        console.log(json_data); // for debugging need to remove later
-    });
-
-    return dino_list;
-}
-
 // Create Human Object
 function human(name, 
                 weight, 
@@ -132,8 +118,16 @@ button.addEventListener("click", function(){
     let dinoData = [];
     let humanData = [];
 
-    //Collect Data
-    dinoData = fetchDinoData();
+    //Dino Data
+    fetch('dino.json')
+    .then(response => response.json())
+    .then(json_data => {
+        // Do something with your data
+        dinoData = json_data.Dinos.map(currDino => jurassic_park(currDino.species, currDino.weight, currDino.height, currDino.diet, currDino.where, currDino.when, currDino.fact));
+        console.log(json_data); // for debugging need to remove later
+    });
+    
+    //Human Data
     humanData = getHumanData();
 
     //Make Tiles
