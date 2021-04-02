@@ -1,7 +1,6 @@
-//variables
-const tileGrid = document.getElementById('grid');
-const dinoCompare = document.getElementById('dino-compare');
-const button = document.getElementById('btn');
+let button = document.getElementById('btn');
+let tileGrid = document.getElementById('grid');
+let dinoCompare = document.getElementById('dino-compare');
 
 function jurassic_park (species, weight, height, diet, where, when, fact){ 
     this.species=species;
@@ -60,67 +59,86 @@ function getHumanData(){
 // NOTE: Weight in JSON file is in lbs, height in inches. 
 function compare1(currentHumanData, dino){
     //Compare Height
-    if(currentHumanData.height < dino.height){
-        return `${dino.species} is taller then you!`;
-    }
-    else if (dino.weight < 1) {
+    
+    // If postive # then human is taller 
+    // If negative # then dino is taller
+    let heightdiff = currentHumanData.height - dino.height;
+
+    if (dino.weight < 1) {
         //Pigeon has only one fact
         return `All birds are dinosaurs.`;
-    } else {
-        return `You are taller then ${dino.species}!`;
     }
-
+    else{
+        if(heightdiff > 0){
+            return `You are taller then ${dino.species}!`;
+        }
+        else if(heightdiff < 0){
+            return `${dino.species} is taller then you!`;
+        }
+        else {
+            return `You & ${dino.species} are the same height!`;
+        }
+    } 
 }
 
 // Create Dino Compare Method 2
 // NOTE: Weight in JSON file is in lbs, height in inches.
 function compare2(currentHumanData, dino){
     //Compare Weight
-    if(currentHumanData.weight < dino.weight){
-        return `${dino.species} weighs more then you!`;
-    } else if (dino.weight < 1) {
+    
+    // If postive # then human weights more 
+    // If negative # then dino weights nore
+    let weightdiff = currentHumanData.weight - dino.weight;
+
+    if (dino.weight < 1) {
         //Pigeon has only one fact
         return `All birds are dinosaurs.`;
-    } else {
-        return `You weight more then ${dino.species}!`;
+    }
+    else{
+        if(weightdiff > 0 ) {
+            return `You weight more then ${dino.species}!`;
+            
+        } else if (weightdiff < 0) {
+            return `${dino.species} weighs more then you!`;
+        } else {
+            return `You & ${dino.species} weight the same!`;
+        }
     }
 }
 
 // Create Dino Compare Method 3
 // NOTE: Weight in JSON file is in lbs, height in inches.
 function compare3(currentHumanData, dino){
-    const message = "";
-    
+
     if (dino.weight < 1) {
         //Pigeon has only one fact
-        return "All birds are dinosaurs.";
+        return `All birds are dinosaurs.`;
     }
     else
     {
         //Compare Diet 
         switch(currentHumanData.diet){
             case "carnivor":
-                message = `${dino.species} has the same diet(${dino.diet}) as you! Yikes!!`;
+                return `${dino.species} has the same diet(${dino.diet}) as you! Yikes!!`;
                 break;
             case "herbavor":
-                message = `${dino.species} has the same diet(${dino.diet}) as you! Yay vegetarianism!! :)` ;
+                return `${dino.species} has the same diet(${dino.diet}) as you! Yay vegetarianism!! :)` ;
                 break;
             case "omnivor":
-                message = `${dino.species} has the same diet(${dino.diet}) as you!`;
+                return `${dino.species} has the same diet(${dino.diet}) as you!`;
                 break;
         }
     }
-    return message;
 }
 
 //Compile fact list and get random fact 
 function getRandomFacts(human, dino){
-    const fact1 = `${dino.species} lived in ${dino.where}`;
-    const fact2 = `${dino.species} lived in the ${dino.when}`;
-    const fact3 = `${dino.fact}`;
+    let fact1 = `${dino.species} lived in ${dino.where}`;
+    let fact2 = `${dino.species} lived in the ${dino.when}`;
+    let fact3 = `${dino.fact}`;
 
-    var fact_list = [compare1(human,dino), compare2(human,dino), compare3(human,dino), fact1, fact2, fact3];
-    var random_fact = fact_list[Math.floor(Math.random() * fact_list.length)];
+    let fact_list = [compare1(human,dino), compare2(human,dino), compare3(human,dino), fact1, fact2, fact3];
+    let random_fact = fact_list[Math.floor(Math.random() * fact_list.length)];
     
     return random_fact;
 }
