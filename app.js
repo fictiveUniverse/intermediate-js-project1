@@ -21,7 +21,6 @@ let dinoData = [];
     .then(json_data => {
         // Do something with your data
         dinoData = json_data.Dinos.map(currDino =>new jurassic_park(currDino.species, currDino.weight, currDino.height, currDino.diet, currDino.where, currDino.when, currDino.fact));
-        console.log("debug", dinoData); // for debugging need to remove later
     });
     
 })()
