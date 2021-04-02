@@ -37,7 +37,7 @@ We have supplied some of the foundational code for you. So follow these steps to
 
 To complete this project, your UI must show the following:
 
-- [ X ] The form should contain a button which upon clicking, removes the form
+- [X] The form should contain a button which upon clicking, removes the form
 - [ ] The button should append a grid with 9 tiles to the DOM with the Human located in the center
 - [ ] The Human tile should display the name of the person and an image, the dino tiles should contain the species, an image and a fact, the bird title should contain the species, image, and "All birds are Dinosaurs."
 
