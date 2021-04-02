@@ -1,5 +1,5 @@
 //variables
-const tileGrid = document.createElement('grid');
+const tileGrid = document.getElementById('grid');
 const dinoCompare = document.getElementById('dino-compare');
 const button = document.getElementById('btn');
 
@@ -13,6 +13,19 @@ function jurassic_park (species, weight, height, diet, where, when, fact){
     this.fact=fact; 
     this.image= "images/" + species.toLowerCase() + ".png";
 }
+
+let dinoData = [];
+(function(){
+    //Dino Data
+    fetch('dino.json')
+    .then(response => response.json())
+    .then(json_data => {
+        // Do something with your data
+        dinoData = json_data.Dinos.map(currDino =>new jurassic_park(currDino.species, currDino.weight, currDino.height, currDino.diet, currDino.where, currDino.when, currDino.fact));
+        console.log("debug", dinoData); // for debugging need to remove later
+    });
+    
+})()
 
 // Create Human Object
 function human(name, 
@@ -115,18 +128,8 @@ function getRandomFacts(human, dino){
 // On button click, prepare and display infographic
 button.addEventListener("click", function(){    
 
-    let dinoData = [];
     let humanData = [];
 
-    //Dino Data
-    fetch('dino.json')
-    .then(response => response.json())
-    .then(json_data => {
-        // Do something with your data
-        dinoData = json_data.Dinos.map(currDino => jurassic_park(currDino.species, currDino.weight, currDino.height, currDino.diet, currDino.where, currDino.when, currDino.fact));
-        console.log(json_data); // for debugging need to remove later
-    });
-    
     //Human Data
     humanData = getHumanData();
 
