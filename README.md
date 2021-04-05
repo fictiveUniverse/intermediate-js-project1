@@ -1,3 +1,11 @@
+# Access Project via Github pages
+
+Dino Project 1 is hosted via Github pages. See [here](https://fictiveuniverse.github.io/intermediate-js-project1/index.html) to launch project site. 
+
+
+
+---
+
 # Object Oriented Javascript 
 
 ## Student Instructions
