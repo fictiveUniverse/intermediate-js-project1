@@ -16,7 +16,7 @@ function jurassic_park (species, weight, height, diet, where, when, fact){
 let dinoData = [];
 (function(){
     //Dino Data
-    fetch('dino.json')
+    fetch("dino.json")
     .then(response => response.json())
     .then(json_data => {
         // Do something with your data
